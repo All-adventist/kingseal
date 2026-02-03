@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Kingseal 👑</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #050814, #0b1c2d);
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      padding: 60px 20px;
+    }
+
+    h1 {
+      font-size: 60px;
+      margin: 0;
+      color: #6cf1ff;
+      text-shadow: 0 0 20px #6cf1ff;
+    }
+
+    h2 {
+      font-weight: normal;
+      opacity: 0.8;
+    }
+
+    .box {
+      background: rgba(255,255,255,0.05);
+      margin: 30px auto;
+      padding: 30px;
+      max-width: 500px;
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(108,241,255,0.2);
+    }
+
+    button {
+      background: linear-gradient(135deg, #6cf1ff, #7b5cff);
+      border: none;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      color: black;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    #seal {
+      font-size: 80px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    footer {
+      opacity: 0.5;
+      font-size: 14px;
+      margin: 40px 0 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>KINGSEAL</h1>
+  <h2>Chill like a king 👑</h2>
+</header>
+
+<div class="box">
+  <h3>👑 Kingseal Tip</h3>
+  <p>Kleine stappen maken grote winnaars.</p>
+</div>
+
+<div class="box">
+  <h3>🎮 King Click Game</h3>
+  <p>Klik zo vaak mogelijk op de zeehond in 10 seconden.</p>
+
+  <div id="seal">🦭</div>
+  <p>Score: <span id="score">0</span></p>
+  <p>Tijd: <span id="time">10</span>s</p>
+
+  <button onclick="startGame()">Start Game</button>
+</div>
+
+<footer>
+  © 2026 Kingseal — Stay sharp.
+</footer>
+
+<script>
+  let score = 0;
+  let timeLeft = 10;
+  let playing = false;
+  let timer;
+
+  const scoreEl = document.getElementById("score");
+  const timeEl = document.getElementById("time");
+  const seal = document.getElementById("seal");
+
+  seal.onclick = () => {
+    if (playing) {
+      score++;
+      scoreEl.textContent = score;
+    }
+  };
+
+  function startGame() {
+    score = 0;
+    timeLeft = 10;
+    playing = true;
+    scoreEl.textContent = score;
+    timeEl.textContent = timeLeft;
+
+    clearInterval(timer);
+    timer = setInterval(() => {
+      timeLeft--;
+      timeEl.textContent = timeLeft;
+
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        playing = false;
+        alert("👑 Game over! Jouw score: " + score);
+      }
+    }, 1000);
+  }
+</script>
+
+</body>
+</html>
